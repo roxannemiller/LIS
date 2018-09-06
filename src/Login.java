@@ -1,18 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Login extends JFrame {
+public class Login extends JPanel {
     public Login() {
-        setSize(1500, 900);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridBagLayout());
-
-        JPanel login_panel = new JPanel();
-        GroupLayout login_layout = new GroupLayout(login_panel);
-
-        login_panel.setLayout(login_layout);
-        login_panel.setPreferredSize(new Dimension(600, 390));
-        login_panel.setBorder(BorderFactory.createLineBorder(Color.black));
+        GroupLayout login_layout = new GroupLayout(this);
+        setLayout(login_layout);
+        setPreferredSize(new Dimension(600, 390));
+        setBorder(BorderFactory.createLineBorder(Color.black));
 
         JLabel title = new JLabel("Sign In");
         title.setFont(new Font("Dialog", Font.BOLD, 38));
@@ -69,11 +63,12 @@ public class Login extends JFrame {
                         .addComponent(sign_in)
         );
 
-        getContentPane().add(login_panel);
     }
 
     public static void main(String args[]) {
-        JFrame frame = new Login();
+        JFrame frame = new Frame("LIS Sign In");
+        JPanel login_panel = new Login();
+        frame.getContentPane().add(login_panel);
         //frame.pack();
         frame.setVisible(true);
     }
