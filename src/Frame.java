@@ -6,7 +6,7 @@ public class Frame extends JFrame {
         super(title);
         setSize(1500, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridBagLayout());
+        //setLayout(new GridBagLayout());
     }
 
 }

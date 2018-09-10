@@ -68,6 +68,7 @@ public class Login extends JPanel {
     public static void main(String args[]) {
         JFrame frame = new Frame("LIS Sign In");
         JPanel login_panel = new Login();
+        frame.setLayout(new GridBagLayout());
         frame.getContentPane().add(login_panel);
         //frame.pack();
         frame.setVisible(true);
