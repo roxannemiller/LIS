@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
-import java.awt.*;
 
 public class Home extends JTabbedPane{
     //holds the overview sub-tabs
