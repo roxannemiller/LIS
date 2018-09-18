@@ -1,12 +1,45 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class Login extends JPanel {
     public Login() {
-        GroupLayout login_layout = new GroupLayout(this);
-        setLayout(login_layout);
-        setPreferredSize(new Dimension(600, 390));
-        setBorder(BorderFactory.createLineBorder(Color.black));
+        setLayout(new GridBagLayout());
+        JPanel login_panel = LoginUI();
+        add(login_panel);
+    }
+
+    //sets the background of the screen to a specific image
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Image i = requestImage("images/loginbkg.png");
+        g.drawImage(i, 0, 0, getWidth(), getHeight(), null);
+    }
+
+    private Image requestImage(String imagePath){
+        Image image = null;
+
+        try {
+            image = ImageIO.read(new File(imagePath));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return image;
+    }
+
+    private JPanel LoginUI(){
+        JPanel loginUI = new JPanel();
+
+        GroupLayout layout = new GroupLayout(loginUI);
+        loginUI.setLayout(layout);
+        loginUI.setPreferredSize(new Dimension(600, 390));
+        loginUI.setBackground(Color.white);
+        loginUI.setBorder(BorderFactory.createLineBorder(Color.black));
 
         JLabel title = new JLabel("Sign In");
         title.setFont(new Font("Dialog", Font.BOLD, 38));
@@ -25,51 +58,52 @@ public class Login extends JPanel {
 
         JButton sign_in = new JButton("Sign In");
 
-        login_layout.setAutoCreateGaps(true);
-        login_layout.setAutoCreateContainerGaps(true);
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
 
-        login_layout.setHorizontalGroup(
-                login_layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(GroupLayout.Alignment.TRAILING, login_layout.createSequentialGroup()
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(sign_in)
                                 .addGap(80, 80, 80))
-                        .addGroup(GroupLayout.Alignment.LEADING, login_layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addGroup(login_layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addGroup(login_layout.createSequentialGroup()
-                                                .addGap(162, 162, 162)
+                        .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addContainerGap(70, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(5, 135, 135)
                                                 .addComponent(title))
                                         .addComponent(username_label)
-                                        .addComponent(username, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(username)
                                         .addComponent(password_label)
-                                        .addComponent(password, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(password)
                                         .addComponent(forgot_password))
                                 .addContainerGap(150, Short.MAX_VALUE))
         );
 
-        login_layout.setVerticalGroup(
-                login_layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+        layout.setVerticalGroup(
+                layout.createSequentialGroup()
+                        .addContainerGap(40, Short.MAX_VALUE)
                         .addComponent(title)
                         .addGap(50, 50, 50)
                         .addComponent(username_label)
-                        .addComponent(username, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(username)
                         .addGap(35, 35, 35)
                         .addComponent(password_label)
-                        .addComponent(password, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(password)
                         .addComponent(forgot_password)
-                        .addGap(45, 45, 45)
+                        .addGap(40, 40, 40)
                         .addComponent(sign_in)
+                        .addGap(40, 40, 40)
         );
 
+        return loginUI;
     }
 
     public static void main(String args[]) {
+        JPanel login = new Login();
         JFrame frame = new Frame("LIS Sign In");
-        JPanel login_panel = new Login();
-        frame.setLayout(new GridBagLayout());
-        frame.getContentPane().add(login_panel);
+        frame.getContentPane().add(login);
         //frame.pack();
         frame.setVisible(true);
     }

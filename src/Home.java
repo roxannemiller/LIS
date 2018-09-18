@@ -18,5 +18,4 @@ public class Home extends JTabbedPane{
         setTabPlacement(JTabbedPane.BOTTOM);
 
     }
-
 }

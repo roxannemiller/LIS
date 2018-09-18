@@ -1,14 +1,23 @@
 import javax.swing.*;
+import java.awt.*;
 
-public class MainTabs extends JTabbedPane {
+public class MainTabs extends JPanel {
     public MainTabs(){
+        setLayout(new GridLayout());
+        setBackground(Color.black);
+        add(Tabs());
+    }
+
+    private JTabbedPane Tabs(){
+        JTabbedPane t = new JTabbedPane();
         JTabbedPane home_tab = new Home();
-        add("Overview", home_tab);
+        t.add("Overview", home_tab);
+        return t;
     }
 
     public static void main(String args[]) {
         JFrame frame = new Frame("Overview");
-        JTabbedPane tabs = new MainTabs();
+        JPanel tabs = new MainTabs();
         frame.getContentPane().add(tabs);
         frame.pack();
         frame.setVisible(true);

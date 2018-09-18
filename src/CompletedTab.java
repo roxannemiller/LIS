@@ -1,18 +1,18 @@
 import javax.swing.*;
 
 public class CompletedTab extends HomeLayout {
-    private JScrollPane completed_list;
+    private JScrollPane completedList;
 
     public CompletedTab(){
-        completed_list = createScrollableList("Completed Tests", 700);
+        completedList = createScrollableList("Completed Tests", 700);
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
-        setHomeLayout(layout, completed_list);
+        setHomeLayout(layout, completedList);
     }
 
     //has createScrollableList
 
     public JScrollPane getCompletedlist(){
-        return completed_list;
+        return completedList;
     }
 }

@@ -3,14 +3,17 @@ import java.awt.*;
 
 public class SamplesTab extends JPanel {
     public SamplesTab(){
-        JLabel sample_type = new JLabel("Sample Type");
-        JComboBox sample_box = new JComboBox();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setPreferredSize(new Dimension(1000, screenSize.height));
 
-        JLabel date_received = new JLabel("Date Received  MM/DD/YYYY");
-        JTextField dr_box = dateEntryField();
+        JLabel sampleType = new JLabel("Sample Type");
+        JComboBox sampleBox = new JComboBox();
 
-        JLabel collection_date = new JLabel("Collection Date  MM/DD/YYYY");
-        JTextField cd_box = dateEntryField();
+        JLabel dateReceived = new JLabel("Date Received  MM/DD/YYYY");
+        JTextField dateBox = dateEntryField();
+
+        JLabel collectionDate = new JLabel("Collection Date  MM/DD/YYYY");
+        JTextField cDateBox = dateEntryField();
 
         JLabel source = new JLabel("Source");
         JComboBox source_box = new JComboBox();
@@ -32,58 +35,64 @@ public class SamplesTab extends JPanel {
 
         constraints.gridx = 0;
         constraints.gridy = 0;
-        constraints.weighty = 0.03;
+        constraints.weighty = 0.02;
         constraints.weightx = 0.1;
 
         constraints.anchor = GridBagConstraints.LAST_LINE_START;
-        add(sample_type, constraints);
+        constraints.insets = new Insets(0, 120, 0, 0);
+        add(sampleType, constraints);
 
         constraints.weighty = 0;
         constraints.gridy++;
         constraints.anchor = GridBagConstraints.FIRST_LINE_START;
-        add(sample_box, constraints);
+        constraints.insets = new Insets(0, 120, 50, 0);
+        add(sampleBox, constraints);
 
         constraints.gridy++;
         constraints.anchor = GridBagConstraints.LAST_LINE_START;
-        add(date_received, constraints);
+        constraints.insets = new Insets(0, 120, 0, 0);
+        add(dateReceived, constraints);
 
         constraints.gridy++;
         constraints.anchor = GridBagConstraints.FIRST_LINE_START;
-        add(dr_box, constraints);
+        constraints.insets = new Insets(0, 120, 50, 0);
+        add(dateBox, constraints);
 
         constraints.gridy++;
         constraints.anchor = GridBagConstraints.LAST_LINE_START;
-        add(collection_date, constraints);
+        constraints.insets = new Insets(0, 120, 0, 0);
+        add(collectionDate, constraints);
 
         constraints.gridy++;
         constraints.anchor = GridBagConstraints.FIRST_LINE_START;
-        add(cd_box, constraints);
+        constraints.insets = new Insets(0, 120, 0, 0);
+        add(cDateBox, constraints);
 
-        constraints.weighty = 0.05;
+        constraints.weighty = 0.01;
         constraints.anchor = GridBagConstraints.LINE_START;
-
         constraints.gridy++;
+        constraints.insets = new Insets(0, 120, 0, 0);
         add(no_inventory, constraints);
 
+        constraints.weighty = 0.02;
         constraints.gridy++;
+        constraints.anchor = GridBagConstraints.PAGE_START;
         add(search, constraints);
 
         constraints.weighty = 0;
-        constraints.weightx = 0.3;
+        constraints.weightx = 0.1;
+
+        constraints.insets = new Insets(0, 20, 0, 0);
         constraints.gridy = 3;
-        constraints.gridx = 1;
-
-        constraints.anchor = GridBagConstraints.LINE_START;
-
-        constraints.anchor = GridBagConstraints.FIRST_LINE_START;
         add(today, constraints);
         constraints.gridy = 5;
         add(today2, constraints);
 
         constraints.gridy = 0;
-        constraints.gridx = 2;
+        constraints.gridx = 1;
         constraints.weightx = 0.5;
 
+        constraints.insets = new Insets(0, 0, 0, 0);
         constraints.anchor = GridBagConstraints.LAST_LINE_START;
         add(source, constraints);
 
@@ -110,24 +119,28 @@ public class SamplesTab extends JPanel {
 
     }
 
-    public JButton todaysDateButton(){
+    private JButton todaysDateButton(){
         // needs code to add today's date
         JButton b = new JButton("Today's Date");
         return b;
     }
 
-    public JTextField dateEntryField(){
+    private JTextField dateEntryField(){
         //needs code to check format --> inputverifier/maskformatter + formatted text field
         JTextField f = new JTextField(10);
         return f;
     }
 
-    public static void main(String args[]) {
-        JFrame frame = new Frame("Samples");
+    private void addItem(JPanel p, JComponent c, int x, int y, int wx, int wy, int anc, int insets){
+
+    }
+
+    /*public static void main(String args[]) {
+        Image image = Frame.requestImage("images/pagesbkg.png");
+        JFrame frame = new Frame("Samples", image);
         JPanel samples_panel = new SamplesTab();
-        //frame.setLayout(new GridBagLayout());
         frame.getContentPane().add(samples_panel);
         //frame.pack();
         frame.setVisible(true);
-    }
+    }*/
 }
