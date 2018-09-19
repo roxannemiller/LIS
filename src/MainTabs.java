@@ -10,7 +10,7 @@ public class MainTabs extends JPanel {
 
     private JTabbedPane Tabs(){
         JTabbedPane t = new JTabbedPane();
-        JTabbedPane home_tab = new Home();
+        JPanel home_tab = new Overview();
         t.add("Overview", home_tab);
         return t;
     }

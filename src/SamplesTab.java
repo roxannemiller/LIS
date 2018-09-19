@@ -135,12 +135,11 @@ public class SamplesTab extends JPanel {
 
     }
 
-    /*public static void main(String args[]) {
-        Image image = Frame.requestImage("images/pagesbkg.png");
-        JFrame frame = new Frame("Samples", image);
+    public static void main(String args[]) {
+        JFrame frame = new Frame("Samples");
         JPanel samples_panel = new SamplesTab();
         frame.getContentPane().add(samples_panel);
         //frame.pack();
         frame.setVisible(true);
-    }*/
+    }
 }
