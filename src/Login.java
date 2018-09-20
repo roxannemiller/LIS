@@ -7,8 +7,8 @@ import javax.imageio.ImageIO;
 public class Login extends JPanel {
     public Login() {
         setLayout(new GridBagLayout());
-        JPanel login_panel = LoginUI();
-        add(login_panel);
+        JPanel loginPanel = LoginUI();
+        add(loginPanel);
     }
 
     //sets the background of the screen to a specific image

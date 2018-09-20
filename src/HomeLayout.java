@@ -2,8 +2,8 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 
-abstract class HomeLayout extends JPanel {
-    JScrollPane notifications;
+abstract class HomeLayout extends TabsBasePanel {
+    protected JScrollPane notifications;
 
     public HomeLayout(){
         notifications = createScrollableList("Notifications", 500);

@@ -2,16 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class Overview extends JPanel{
-    //holds the overview cards
+public class Search extends JPanel{
     private CardLayout layout = new CardLayout();
     private JPanel cardHolder = new JPanel(layout);
 
-    public Overview(){
-        //holds the buttons that swap between the cards
+    public Search(){
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
-        JPanel[] cards = {new ToDoTab(), new InProgressTab(), new CompletedTab(), new FailedTab()};
-        String[] cardLabels = {"To-Do", "In Progress", "Completed", "Failed"};
+        JPanel[] cards = {new SearchSamples()};
+        String[] cardLabels = {"Samples"};
 
         for(int i = 0; i < cards.length; i++){
             //adds each card to the cardHolder panel with the associated name

@@ -10,8 +10,13 @@ public class MainTabs extends JPanel {
 
     private JTabbedPane Tabs(){
         JTabbedPane t = new JTabbedPane();
-        JPanel home_tab = new Overview();
-        t.add("Overview", home_tab);
+
+        JPanel overviewTab = new Overview();
+        t.add("Overview", overviewTab);
+
+        JPanel searchTab = new Search();
+        t.add("Search", searchTab);
+
         return t;
     }
 
