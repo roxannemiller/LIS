@@ -2,14 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class Search extends JPanel{
+public class Samples extends JPanel{
     private CardLayout layout = new CardLayout();
     private JPanel cardHolder = new JPanel(layout);
 
-    public Search(){
+    public Samples(){
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
-        JPanel[] cards = {new SearchSamples(), new SearchTests(), new SearchContacts(), new SearchProjects()};
-        String[] cardLabels = {"Samples", "Tests", "Contacts", "Projects"};
+        JPanel[] cards = {new NewSample()};
+        String[] cardLabels = {"New Sample"};
 
         for(int i = 0; i < cards.length; i++){
             //adds each card to the cardHolder panel with the associated name

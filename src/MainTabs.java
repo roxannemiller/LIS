@@ -17,6 +17,9 @@ public class MainTabs extends JPanel {
         JPanel searchTab = new Search();
         t.add("Search", searchTab);
 
+        JPanel samplesTab = new Samples();
+        t.add("Samples", samplesTab);
+
         return t;
     }
 

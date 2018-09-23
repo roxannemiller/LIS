@@ -9,14 +9,14 @@ abstract class HomeLayout extends TabsBasePanel {
         notifications = createScrollableList("Notifications", 500);
     }
 
-    public void setHomeLayout(GroupLayout layout, JScrollPane second_pane){
+    public void setHomeLayout(GroupLayout layout, JScrollPane secondPane){
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
 
         layout.setHorizontalGroup(
                 layout.createSequentialGroup()
                         .addGap(5, 100, 1000)
-                        .addComponent(second_pane)
+                        .addComponent(secondPane)
                         .addGap(5, 100, 1000)
                         .addComponent(notifications)
                         .addContainerGap(100, Short.MAX_VALUE)
@@ -25,15 +25,15 @@ abstract class HomeLayout extends TabsBasePanel {
         layout.setVerticalGroup(
                 layout.createSequentialGroup()
                         .addGap(5, 90, 1000)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(second_pane)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, true)
+                                .addComponent(secondPane)
                                 .addComponent(notifications))
                         .addContainerGap(90, Short.MAX_VALUE)
 
         );
     }
 
-    public JScrollPane createScrollableList(String title, int width){
+    protected JScrollPane createScrollableList(String title, int width){
         JList scrollable_list = new JList();
         JScrollPane pane = new JScrollPane();
         pane.setViewportView(scrollable_list);
