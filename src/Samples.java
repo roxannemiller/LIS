@@ -8,8 +8,8 @@ public class Samples extends JPanel{
 
     public Samples(){
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
-        JPanel[] cards = {new NewSample(), new AddEditSampleType()};
-        String[] cardLabels = {"New Sample", "Add/Edit Sample Type"};
+        JPanel[] cards = {new NewSample(), new AddEditContact()};
+        String[] cardLabels = {"New Sample", "Add/Edit Contact"};
 
         for(int i = 0; i < cards.length; i++){
             //adds each card to the cardHolder panel with the associated name
