@@ -48,5 +48,4 @@ abstract class SearchLayout extends TabsBasePanel{
         constraints.insets = new Insets(0, left, bottom, right);
         p.add(c, constraints);
     }
-
 }

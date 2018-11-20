@@ -20,6 +20,9 @@ public class MainTabs extends JPanel {
         JPanel samplesTab = new Samples();
         t.add("Samples", samplesTab);
 
+        JPanel servicesTab = new Services();
+        t.add("Services", servicesTab);
+
         return t;
     }
 

@@ -108,7 +108,7 @@ public class NewSample extends TabsBasePanel{
 
     private JPanel measurementUnits(){
         JPanel p = new JPanel(new GridLayout(1, 0, 1, 0));
-        JRadioButton[] buttons = {new JRadioButton("mG"), new JRadioButton("g"), new JRadioButton("mL"), new JRadioButton("L")};
+        JRadioButton[] buttons = {new JRadioButton("mg"), new JRadioButton("g"), new JRadioButton("mL"), new JRadioButton("L")};
 
         for (JRadioButton b : buttons){
             p.add(b);
