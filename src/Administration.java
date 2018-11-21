@@ -2,16 +2,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class Services extends JPanel {
+public class Administration extends JPanel {
     private CardLayout layout = new CardLayout();
     private JPanel cardHolder = new JPanel(layout);
 
-    public Services() {
+    public Administration(){
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
-        JPanel[] cards = {new NewTest()};
-        String[] cardLabels = {"New Test"};
+        JPanel[] cards = {new Notifications(), new AddEditSampleType()};
+        String[] cardLabels = {"Notifications", "Add/Edit Sample Type"};
+        //add user, delete user, manage user privileges, inventory, add/edit test type, edit test steps
 
-        for(int i = 0; i < cards.length; i++){
+        for (int i = 0; i < cards.length; i++) {
             //adds each card to the cardHolder panel with the associated name
             cardHolder.add(cardLabels[i], cards[i]);
 
@@ -22,16 +23,17 @@ public class Services extends JPanel {
         setLayout(new BorderLayout());
         add(buttonPanel, BorderLayout.PAGE_START);
         add(cardHolder, BorderLayout.CENTER);
+}
+
+private class ButtonAction extends AbstractAction{
+    public ButtonAction(String buttonLabel){
+        super(buttonLabel);
     }
 
-    private class ButtonAction extends AbstractAction{
-        public ButtonAction(String buttonLabel){
-            super(buttonLabel);
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e){
-            layout.show(cardHolder, e.getActionCommand());
-        }
+    @Override
+    public void actionPerformed(ActionEvent e){
+        layout.show(cardHolder, e.getActionCommand());
     }
+}
+
 }
