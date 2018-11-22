@@ -33,6 +33,10 @@ abstract class SampleType extends JPanel {
         JLabel additionalSubtype = new JLabel("Add Another Subtype");
         additionalSubtype.setAlignmentX(Component.LEFT_ALIGNMENT);
         add(additionalSubtype);
+
+        add(Box.createRigidArea(new Dimension(0, 60)));
+        JButton saveButton = new JButton("Save Changes");
+        add(saveButton);
     }
 
     abstract protected JComponent getSampleTypeBox();
