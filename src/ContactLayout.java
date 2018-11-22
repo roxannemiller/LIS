@@ -11,18 +11,16 @@ public class ContactLayout extends JPanel{
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
         String[] cardLabels = {"Add Contact", "Edit Contact"};
 
-        JPanel addContact = new AddContact();
         JButton addC = new JButton(new ButtonAction(cardLabels[0]));
         addC.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.black));
 
-        cardHolder.add(cardLabels[0], addContact);
+        cardHolder.add(cardLabels[0], new AddContact());
         buttonPanel.add(addC);
 
-        JPanel editContact = new EditContact();
         JButton editC = new JButton(new ButtonAction(cardLabels[1]));
         editC.setBorderPainted(false);
 
-        cardHolder.add(cardLabels[1], editContact);
+        cardHolder.add(cardLabels[1], new EditContact());
         buttonPanel.add(editC);
 
         JButton[] buttons = {addC, editC};

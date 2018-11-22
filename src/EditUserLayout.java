@@ -3,27 +3,33 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class SampleTypeLayout extends JPanel{
+public class EditUserLayout extends JPanel {
     private CardLayout layout = new CardLayout();
     private JPanel cardHolder = new JPanel(layout);
 
-    public SampleTypeLayout(){
+    public EditUserLayout(){
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
-        String[] cardLabels = {"Edit Existing Sample Type", "Add New Sample Type"};
+        String[] cardLabels = {"Add User", "Delete User", "Edit User Privileges"};
+        
+        JButton addUser = new JButton(new ButtonAction(cardLabels[0]));
+        addUser.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.black));
 
-        JButton editType = new JButton(new ButtonAction(cardLabels[0]));
-        editType.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.black));
+        cardHolder.add(cardLabels[0], new AddUser());
+        buttonPanel.add(addUser);
 
-        cardHolder.add(cardLabels[0], new EditSampleType());
-        buttonPanel.add(editType);
+        JButton delUser = new JButton(new ButtonAction(cardLabels[1]));
+        delUser.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.black));
 
-        JButton newType = new JButton(new ButtonAction(cardLabels[1]));
-        newType.setBorderPainted(false);
+        cardHolder.add(cardLabels[1], new DeleteUser());
+        buttonPanel.add(delUser);
 
-        cardHolder.add(cardLabels[1], new NewSampleType());
-        buttonPanel.add(newType);
+        JButton userPrivs = new JButton(new ButtonAction(cardLabels[2]));
+        userPrivs.setBorderPainted(false);
 
-        JButton[] buttons = {editType, newType};
+        cardHolder.add(cardLabels[2], new UserPrivileges());
+        buttonPanel.add(userPrivs);
+
+        JButton[] buttons = {addUser, delUser, userPrivs};
         for (JButton b : buttons) {
             b.setFocusPainted(false);
             b.setMargin(new Insets(0, 0, 0, 0));

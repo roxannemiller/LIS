@@ -8,8 +8,8 @@ public class Administration extends JPanel {
 
     public Administration(){
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
-        JPanel[] cards = {new Notifications(), new AddEditSampleType()};
-        String[] cardLabels = {"Notifications", "Add/Edit Sample Type"};
+        JPanel[] cards = {new Notifications(), new EditUsers(), new AddEditSampleType()};
+        String[] cardLabels = {"Notifications", "Edit Users", "Add/Edit Sample Type"};
         //add user, delete user, manage user privileges, inventory, add/edit test type, edit test steps
 
         for (int i = 0; i < cards.length; i++) {
