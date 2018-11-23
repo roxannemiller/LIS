@@ -28,7 +28,7 @@ public class ContactLayout extends JPanel{
             b.setFocusPainted(false);
             b.setMargin(new Insets(0, 0, 0, 0));
             b.setContentAreaFilled(false);
-            setOpaque(false);
+            //b.setOpaque(false);
             buttonPanel.add(b);
         }
 

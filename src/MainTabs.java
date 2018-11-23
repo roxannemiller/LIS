@@ -30,5 +30,6 @@ public class MainTabs extends JPanel {
         frame.getContentPane().add(tabs);
         frame.pack();
         frame.setVisible(true);
+        System.out.println(frame.getContentPane().getSize());
     }
 }
