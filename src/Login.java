@@ -61,8 +61,6 @@ public class Login extends JPanel implements ActionListener {
 
         username = new JTextField(20);
         password = new JPasswordField(15);
-        password.setActionCommand("Sign In");
-        password.addActionListener(this);
 
         JButton signIn = new JButton("Sign In");
         signIn.setActionCommand("Sign In");
@@ -135,10 +133,17 @@ public class Login extends JPanel implements ActionListener {
         String correctUsername = "msedward";
 
         if(user.equals(correctUsername) && isPasswordCorrect(pwd)) {
-            System.out.println("VALID");
+            frame.getContentPane().remove(this);
+            frame.setTitle("Overview");
+            JPanel tabs = new MainTabs(frame);
+            frame.getContentPane().add(tabs);
+            frame.pack();
         }
         else {
-            System.out.println("INVALID");
+            JOptionPane.showMessageDialog(frame, "Incorrect Username/Password Combination.\n"
+                    + "                    Please Try Again.");
+            password.setText("");
+
         }
     }
 }

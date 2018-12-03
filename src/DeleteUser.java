@@ -11,7 +11,7 @@ public class DeleteUser extends JPanel {
         user.setAlignmentX(Component.LEFT_ALIGNMENT);
         add(user);
 
-        JComboBox userBox = new JComboBox();
+        JComboBox userBox = ComboBoxes.technicianBox();
         userBox.setAlignmentX(Component.LEFT_ALIGNMENT);
         userBox.setMaximumSize(new Dimension(300, 26));
         add(userBox);

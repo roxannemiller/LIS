@@ -9,17 +9,15 @@ public class Notifications extends TabsBasePanel {
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
 
-        currNotifs = createScrollableList("Current Notifications", 600);
+        currNotifs = createScrollableList("Current Notifications", 600, HomeLayout.getNotifications());
         JPanel newNotif = createNewNotification();
         JButton deleteNotif = new JButton("Delete Notification");
 
         setNotifLayout(layout, currNotifs, newNotif, deleteNotif);
     }
 
-    private JScrollPane createScrollableList(String title, int width){
-        JList scrollable_list = new JList();
-        JScrollPane pane = new JScrollPane();
-        pane.setViewportView(scrollable_list);
+    private JScrollPane createScrollableList(String title, int width, JTextArea content){
+        JScrollPane pane = new JScrollPane(content);
         pane.setPreferredSize(new Dimension(width, 600));
         pane.setBorder(BorderFactory.createTitledBorder(null, title, TitledBorder.LEADING, TitledBorder.ABOVE_TOP));
 
@@ -102,5 +100,4 @@ public class Notifications extends TabsBasePanel {
 
         );
     }
-
 }

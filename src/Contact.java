@@ -14,7 +14,7 @@ abstract class Contact extends JPanel {
             contact.setAlignmentX(Component.LEFT_ALIGNMENT);
             add(contact);
 
-            JComboBox cBox = new JComboBox();
+            JComboBox cBox = ComboBoxes.contactBox();
             cBox.setAlignmentX(Component.LEFT_ALIGNMENT);
             cBox.setMaximumSize(new Dimension(300, 26));
             add(cBox);

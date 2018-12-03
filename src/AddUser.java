@@ -21,7 +21,7 @@ public class AddUser extends JPanel {
 
         addJLabel("Privileges");
 
-        JComboBox privBox = new JComboBox();
+        JComboBox privBox = ComboBoxes.privilegesBox();
         addJBox(privBox);
 
         add(Box.createRigidArea(new Dimension(0, 50)));

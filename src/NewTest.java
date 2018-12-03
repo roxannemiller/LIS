@@ -17,7 +17,7 @@ public class NewTest extends TabsBasePanel {
 
         addJLabel(p, "Test Type");
 
-        JComboBox testType = new JComboBox();
+        JComboBox testType = ComboBoxes.testTypeBox();
         testType.setAlignmentX(Component.LEFT_ALIGNMENT);
         testType.setMaximumSize(new Dimension(300, 26));
         p.add(testType);

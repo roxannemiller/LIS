@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class Overview extends JPanel{
+public class Overview extends JPanel {
     //holds the overview cards
     private CardLayout layout = new CardLayout();
     private JPanel cardHolder = new JPanel(layout);

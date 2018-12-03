@@ -24,17 +24,17 @@ public class SearchContacts extends SearchLayout {
 
         JLabel contact = new JLabel("Contact Name");
         addItem(p, contact, 0, 0, 0.15, 0.1, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 60, 0, 0);
-        JComboBox contactBox = new JComboBox();
+        JComboBox contactBox = ComboBoxes.contactBox();
         addItem(p, contactBox, 0, 1, 0.15, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 60, 0, 0);
 
         JLabel affiliation = new JLabel("Contact Affiliation");
         addItem(p, affiliation, 1, 0, 0.15, 0.1, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 40, 0, 0);
-        JComboBox affiliationBox = new JComboBox();
+        JComboBox affiliationBox = cAffiliationBox();
         addItem(p, affiliationBox, 1, 1, 0.15, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 40, 0, 0);
 
         JLabel sortBy = new JLabel("Sort By");
         addItem(p, sortBy, 2, 0, 0.2, 0.1, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 40, 0, 0);
-        JComboBox statusBox = new JComboBox();
+        JComboBox statusBox = sortByOptions();
         addItem(p, statusBox, 2, 1, 0.2, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 40, 10, 0);
 
         JButton search = new JButton("Search");
@@ -42,4 +42,17 @@ public class SearchContacts extends SearchLayout {
 
         return p;
     }
+
+    private JComboBox cAffiliationBox(){
+        String[] defaultTypes = {"", "Cal Poly"};
+
+        return new JComboBox<>(defaultTypes);
+    }
+
+    private JComboBox sortByOptions(){
+        String[] defaultTypes = {"", "Contact Name", "Contact Affiliation"};
+
+        return new JComboBox<>(defaultTypes);
+    }
+
 }

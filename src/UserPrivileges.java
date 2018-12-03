@@ -11,12 +11,12 @@ public class UserPrivileges extends JPanel {
         user.setAlignmentX(Component.LEFT_ALIGNMENT);
         add(user);
 
-        JComboBox userBox = new JComboBox();
+        JComboBox userBox = ComboBoxes.technicianBox();
         addJBox(userBox);
 
         addJLabel("Privileges");
 
-        JComboBox privBox = new JComboBox();
+        JComboBox privBox = ComboBoxes.privilegesBox();
         addJBox(privBox);
 
         add(Box.createRigidArea(new Dimension(0, 50)));

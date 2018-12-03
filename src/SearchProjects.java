@@ -24,22 +24,34 @@ public class SearchProjects extends SearchLayout{
 
         JLabel project = new JLabel("Project Name");
         addItem(p, project, 0, 0, 0.15, 0.1, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 60, 0, 0);
-        JComboBox projBox = new JComboBox();
+        JComboBox projBox = ComboBoxes.projectBox();
         addItem(p, projBox, 0, 1, 0.15, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 60, 0, 0);
 
         JLabel owner = new JLabel("Project Owner");
         addItem(p, owner, 1, 0, 0.15, 0.1, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 40, 0, 0);
-        JComboBox ownerBox = new JComboBox();
+        JComboBox ownerBox = projOwnerBox();
         addItem(p, ownerBox, 1, 1, 0.15, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 40, 0, 0);
 
         JLabel sortBy = new JLabel("Sort By");
         addItem(p, sortBy, 2, 0, 0.2, 0.1, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 40, 0, 0);
-        JComboBox statusBox = new JComboBox();
-        addItem(p, statusBox, 2, 1, 0.2, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 40, 10, 0);
+        JComboBox sortBox = sortByOptions();
+        addItem(p, sortBox, 2, 1, 0.2, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 40, 10, 0);
 
         JButton search = new JButton("Search");
         addItem(p, search, 3, 1, 0.05, 0.05, 1, GridBagConstraints.PAGE_START, GridBagConstraints.NONE, 20, 0, 40);
 
         return p;
+    }
+
+    private JComboBox projOwnerBox(){
+        String[] defaultTypes = {"", "Allison", "Enterprise F2018"};
+
+        return new JComboBox<>(defaultTypes);
+    }
+
+    private JComboBox sortByOptions(){
+        String[] defaultTypes = {"", "Project", "Project Owner", "Date - Most Recent", "Date - Least Recent"};
+
+        return new JComboBox<>(defaultTypes);
     }
 }

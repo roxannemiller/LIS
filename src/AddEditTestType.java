@@ -9,7 +9,7 @@ public class AddEditTestType extends JPanel {
 
         addJLabel("Test Type", 0);
 
-        JComboBox typeBox = new JComboBox();
+        JComboBox typeBox = ComboBoxes.testTypeBox();
         addJBox(typeBox);
 
         addJLabel("New Test Type", 50);

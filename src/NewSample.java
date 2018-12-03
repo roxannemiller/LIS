@@ -17,7 +17,7 @@ public class NewSample extends TabsBasePanel{
         JLabel sampleType = new JLabel("Sample Type");
         addItem(p, sampleType, 0, 0, 0.2, 0.015, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 60, 0, 0);
 
-        JComboBox sampleBox = new JComboBox();
+        JComboBox sampleBox = ComboBoxes.sampleTypeBox();
         addItem(p, sampleBox, 0, 1, 0.2, 0, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 60, 50, 0);
 
         JLabel amount = new JLabel("Amount");
@@ -47,28 +47,30 @@ public class NewSample extends TabsBasePanel{
         JButton addSample = new JButton("Add Sample");
         addItem(p, addSample, 0, 8, 0.2, 0.025, 1, GridBagConstraints.PAGE_START, GridBagConstraints.NONE, 60, 0, 0);
 
-        JButton today = todaysDateButton();
+        Action rDateAction = new TodaysDateAction("Today's Date", dateBox);
+        JButton today = new JButton(rDateAction);
         addItem(p, today, 1, 5, 0.1, 0, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.NONE, 10, 0, 0);
 
-        JButton today2 = todaysDateButton();
+        Action cDateAction = new TodaysDateAction("Today's Date", cDateBox);
+        JButton today2 = new JButton(cDateAction);
         addItem(p, today2, 1, 7, 0.1, 0, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.NONE, 10, 0, 0);
 
         JLabel source = new JLabel("Source");
         addItem(p, source, 2, 0, 0.2, 0, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 10, 0, 60);
 
-        JComboBox sourceBox = new JComboBox();
+        JComboBox sourceBox = ComboBoxes.sourceBox();
         addItem(p, sourceBox, 2, 1, 0.2, 0, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 10, 0, 60);
 
         JLabel contact = new JLabel("Contact");
         addItem(p, contact, 2, 2, 0.2, 0, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 10, 0, 60);
 
-        JComboBox contactBox = new JComboBox();
+        JComboBox contactBox = ComboBoxes.contactBox();
         addItem(p, contactBox, 2, 3, 0.2, 0, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 10, 0, 60);
 
         JLabel storageLocation = new JLabel("Storage Location");
         addItem(p, storageLocation, 2, 4, 0.2, 0, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 10, 0, 60);
 
-        JComboBox storageBox = new JComboBox();
+        JComboBox storageBox = ComboBoxes.storageLocBox();
         addItem(p, storageBox, 2, 5, 0.2, 0, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 10, 0, 60);
 
         JLabel additionalInfo = new JLabel("Additional Description");
@@ -79,12 +81,6 @@ public class NewSample extends TabsBasePanel{
         addItem(p, info, 2, 7, 0.2, 0, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 10, 50, 60);
 
         return p;
-    }
-
-    private JButton todaysDateButton() {
-        // needs code to add today's date
-        JButton b = new JButton("Today's Date");
-        return b;
     }
 
     private JTextField dateEntryField() {

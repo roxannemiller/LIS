@@ -8,7 +8,7 @@ public class EditSampleType extends SampleType{
     }
 
     protected JComponent getSampleTypeBox(){
-        sampleBox = new JComboBox();
+        sampleBox = ComboBoxes.sampleTypeBox();
         return sampleBox;
     }
 }

@@ -24,46 +24,49 @@ public class SearchTests extends SearchLayout{
 
         JLabel testType = new JLabel("Test Type");
         addItem(p, testType, 0, 0, 0.3, 0.1, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 60, 0, 0);
-        JComboBox testBox = new JComboBox();
+        JComboBox testBox = ComboBoxes.testTypeBox();
         addItem(p, testBox, 0, 1, 0.3, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 60, 0, 0);
 
         JLabel sampleType = new JLabel("Sample Type Used");
         addItem(p, sampleType, 0, 2, 0.3, 0.1, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 60, 0, 0);
-        JComboBox sampleBox = new JComboBox();
+        JComboBox sampleBox = ComboBoxes.sampleTypeBox();
         addItem(p, sampleBox, 0, 3, 0.3, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 60, 0, 0);
 
         JLabel testStatus = new JLabel("Test Status");
         addItem(p, testStatus, 1, 0, 0.5, 0.1, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 40, 0, 0);
-        JComboBox statusBox = new JComboBox();
+        JComboBox statusBox = testStatusBox();
         addItem(p, statusBox, 1, 1, 0.5, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 40, 10, 0);
 
         JLabel subject = new JLabel("Subject");
         addItem(p, subject, 1, 2, 0.5, 0.1, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.HORIZONTAL, 40, 0, 0);
-        JComboBox subjectBox = new JComboBox();
+        JComboBox subjectBox = ComboBoxes.sourceBox();
         addItem(p, subjectBox, 1, 3, 0.5, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 40, 0, 0);
 
         JLabel assocProject = new JLabel("Associated Project");
         addItem(p, assocProject, 2, 0, 0.4, 0.1, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 40, 0, 40);
-        JComboBox projBox = new JComboBox();
+        JComboBox projBox = ComboBoxes.projectBox();
         addItem(p, projBox, 2, 1, 0.4, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 40, 0, 40);
 
         JLabel tech = new JLabel("Technician");
         addItem(p, tech, 2, 2, 0.4, 0.1, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 40, 0, 40);
-        JComboBox techBox = new JComboBox();
+        JComboBox techBox = ComboBoxes.technicianBox();
         addItem(p, techBox, 2, 3, 0.4, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 40, 0, 40);
 
         JLabel sort = new JLabel("Sort By");
         addItem(p, sort, 3, 2, 0.2, 0.1, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 0, 0, 0);
-        JComboBox sortBox = new JComboBox();
+
+        JComboBox sortBox = sortByOptions();
         addItem(p, sortBox, 3, 3, 0.2, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 0, 0, 0);
 
         JLabel testDate = new JLabel("Test Date MM/DD/YYYY");
         addItem(p, testDate, 3, 0, 0.05, 0, 1, GridBagConstraints.LAST_LINE_START, GridBagConstraints.NONE, 0, 0, 0);
+
         JTextField dateBox = dateEntryField();
         dateBox.setPreferredSize(new Dimension(110, 26));
         addItem(p, dateBox, 3, 1, 0.05, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 0, 0, 0);
 
-        JButton today = todaysDateButton();
+        Action dateAction = new TodaysDateAction("Today's Date", dateBox);
+        JButton today = new JButton(dateAction);
         addItem(p, today, 4, 1, 0.05, 0.1, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.NONE, 10, 0, 40);
 
         JButton search = new JButton("Search");
@@ -72,17 +75,22 @@ public class SearchTests extends SearchLayout{
         return p;
     }
 
-
-    private JButton todaysDateButton(){
-        // needs code to add today's date
-        JButton b = new JButton("Today's Date");
-        return b;
-    }
-
     private JTextField dateEntryField(){
         //needs code to check format --> inputverifier/maskformatter + formatted text field
         JTextField f = new JTextField(10);
         return f;
     }
 
+    private JComboBox testStatusBox(){
+        String[] defaultTypes = {"", "In-Progress", "Completed", "Failed"};
+
+        return new JComboBox<>(defaultTypes);
+    }
+
+    private JComboBox sortByOptions(){
+        String[] defaultTypes = {"", "Sample Type", "Test Type", "Test Status", "Subject", "Associated Project",
+                "Technician", "Date - Most Recent", "Date - Least Recent"};
+
+        return new JComboBox<>(defaultTypes);
+    }
 }

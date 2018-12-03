@@ -1,8 +1,13 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 public class MainTabs extends JPanel {
-    public MainTabs(){
+    JFrame frame;
+
+    public MainTabs(JFrame frame){
+        this.frame = frame;
         setLayout(new GridLayout());
         setBackground(Color.black);
         add(Tabs());
@@ -21,15 +26,14 @@ public class MainTabs extends JPanel {
 
         t.add("Administration", new Administration());
 
-        return t;
-    }
+        ChangeListener changeListener = (ChangeEvent changeEvent)->{
+                JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
+                int index = sourceTabbedPane.getSelectedIndex();
+                frame.setTitle(sourceTabbedPane.getTitleAt(index));
+        };
 
-    public static void main(String args[]) {
-        JFrame frame = new Frame("Overview");
-        JPanel tabs = new MainTabs();
-        frame.getContentPane().add(tabs);
-        frame.pack();
-        frame.setVisible(true);
-        System.out.println(frame.getContentPane().getSize());
+        t.addChangeListener(changeListener);
+
+        return t;
     }
 }

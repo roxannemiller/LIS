@@ -3,10 +3,12 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 abstract class HomeLayout extends TabsBasePanel {
-    protected JScrollPane notifications;
+    public static JTextArea notifications;
+    public JScrollPane notifs;
 
     public HomeLayout(){
-        notifications = createScrollableList("Notifications", 500);
+        notifs = new JScrollPane(notifications);
+        notifs = createScrollableList("Notifications", 500);
     }
 
     public void setHomeLayout(GroupLayout layout, JScrollPane secondPane){
@@ -18,7 +20,7 @@ abstract class HomeLayout extends TabsBasePanel {
                         .addGap(5, 100, 1000)
                         .addComponent(secondPane)
                         .addGap(5, 100, 1000)
-                        .addComponent(notifications)
+                        .addComponent(notifs)
                         .addContainerGap(100, Short.MAX_VALUE)
         );
 
@@ -27,7 +29,7 @@ abstract class HomeLayout extends TabsBasePanel {
                         .addGap(5, 90, 1000)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, true)
                                 .addComponent(secondPane)
-                                .addComponent(notifications))
+                                .addComponent(notifs))
                         .addContainerGap(90, Short.MAX_VALUE)
 
         );
@@ -41,5 +43,9 @@ abstract class HomeLayout extends TabsBasePanel {
         pane.setBorder(BorderFactory.createTitledBorder(null, title, TitledBorder.LEADING, TitledBorder.ABOVE_TOP));
 
         return pane;
+    }
+
+    public static JTextArea getNotifications(){
+        return notifications;
     }
 }
