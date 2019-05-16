@@ -3,12 +3,10 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 abstract class HomeLayout extends TabsBasePanel {
-    public static JTextArea notifications;
     public JScrollPane notifs;
 
     public HomeLayout(){
-        notifs = new JScrollPane(notifications);
-        notifs = createScrollableList("Notifications", 500);
+        notifs = createScrollableList("Notifications", 500, Notifications.getNotifications());
     }
 
     public void setHomeLayout(GroupLayout layout, JScrollPane secondPane){
@@ -35,17 +33,12 @@ abstract class HomeLayout extends TabsBasePanel {
         );
     }
 
-    protected JScrollPane createScrollableList(String title, int width){
-        JList scrollable_list = new JList();
+    protected JScrollPane createScrollableList(String title, int width, JList content){
         JScrollPane pane = new JScrollPane();
-        pane.setViewportView(scrollable_list);
+        pane.setViewportView(content);
         pane.setPreferredSize(new Dimension(width, 600));  //all the lists will be the same height
         pane.setBorder(BorderFactory.createTitledBorder(null, title, TitledBorder.LEADING, TitledBorder.ABOVE_TOP));
 
         return pane;
-    }
-
-    public static JTextArea getNotifications(){
-        return notifications;
     }
 }

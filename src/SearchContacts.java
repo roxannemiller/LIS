@@ -3,17 +3,17 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 public class SearchContacts extends SearchLayout {
-    private JScrollPane contactResults;
+    private JList contactResults = new JList();
 
     public SearchContacts(){
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
 
-        contactResults =  createScrollableList("Results", 500);
+        JScrollPane results =  createScrollableList("Results", 500, contactResults);
         JPanel samplesUI = SearchContactsUI();
         samplesUI.setBorder(BorderFactory.createTitledBorder(null, "Filters", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION));
 
-        setSearchLayout(layout, samplesUI, contactResults);
+        setSearchLayout(layout, samplesUI, results);
     }
 
     private JPanel SearchContactsUI(){
@@ -53,6 +53,10 @@ public class SearchContacts extends SearchLayout {
         String[] defaultTypes = {"", "Contact Name", "Contact Affiliation"};
 
         return new JComboBox<>(defaultTypes);
+    }
+
+    public JList getSearchContactResults(){
+        return contactResults;
     }
 
 }

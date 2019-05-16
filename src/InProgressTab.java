@@ -1,18 +1,18 @@
 import javax.swing.*;
 
 public class InProgressTab extends HomeLayout {
-    private JScrollPane in_progress_list;
+    private JList inProgressList = new JList();
 
     public InProgressTab(){
-        in_progress_list = createScrollableList("Tests In Progress", 700);
+        JScrollPane inProgress = createScrollableList("Tests In Progress", 700, inProgressList);
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
-        setHomeLayout(layout, in_progress_list);
+        setHomeLayout(layout, inProgress);
     }
 
     //has createScrollableList
 
-    public JScrollPane getInProgressList(){
-        return in_progress_list;
+    public JList getInProgressList(){
+        return inProgressList;
     }
 }

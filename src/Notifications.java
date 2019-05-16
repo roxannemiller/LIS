@@ -3,20 +3,20 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 public class Notifications extends TabsBasePanel {
-    private JScrollPane currNotifs;
+    public static JList notifications;
 
     public Notifications(){
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
 
-        currNotifs = createScrollableList("Current Notifications", 600, HomeLayout.getNotifications());
+        JScrollPane currNotifs = createScrollableList("Current Notifications", 600, notifications);
         JPanel newNotif = createNewNotification();
         JButton deleteNotif = new JButton("Delete Notification");
 
         setNotifLayout(layout, currNotifs, newNotif, deleteNotif);
     }
 
-    private JScrollPane createScrollableList(String title, int width, JTextArea content){
+    private JScrollPane createScrollableList(String title, int width, JList content){
         JScrollPane pane = new JScrollPane(content);
         pane.setPreferredSize(new Dimension(width, 600));
         pane.setBorder(BorderFactory.createTitledBorder(null, title, TitledBorder.LEADING, TitledBorder.ABOVE_TOP));
@@ -44,7 +44,7 @@ public class Notifications extends TabsBasePanel {
         addItem(p, notif, 0, 2, 0, 1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 20, 0, 0);
 
         JTextField notifBox = new JTextField();
-        notifBox.setPreferredSize(new Dimension(530, 400));
+        notifBox.setPreferredSize(new Dimension(530, 300));
         addItem(p, notifBox, 0, 3, 0.3, 2, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.VERTICAL, 0, 0, 0);
 
         JButton createNotif = new JButton("Create Notification");
@@ -99,5 +99,9 @@ public class Notifications extends TabsBasePanel {
                         .addContainerGap(90, Short.MAX_VALUE)
 
         );
+    }
+
+    public static JList getNotifications(){
+        return notifications;
     }
 }

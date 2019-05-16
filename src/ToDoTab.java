@@ -1,19 +1,19 @@
 import javax.swing.*;
 
 public class ToDoTab extends HomeLayout {
-    private JScrollPane to_do_list;
+    private JList toDoList = new JList();
 
     public ToDoTab(){
-        to_do_list = createScrollableList("To-Do", 700);
+        JScrollPane toDo = createScrollableList("To-Do", 700, toDoList);
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
-        setHomeLayout(layout, to_do_list);
+        setHomeLayout(layout, toDo);
     }
 
     //has createScrollableList
 
-    public JScrollPane getToDoList(){
-        return to_do_list;
+    public JList getToDoList(){
+        return toDoList;
     }
 }
 

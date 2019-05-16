@@ -3,17 +3,17 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 public class SearchTests extends SearchLayout{
-    private JScrollPane testResults;
+    private JList testResults = new JList();
 
     public SearchTests(){
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
 
         JPanel testUI = SearchTestsUI();
-        testResults =  createScrollableList("Results", 500);
+        JScrollPane results =  createScrollableList("Results", 500, testResults);
         testUI.setBorder(BorderFactory.createTitledBorder(null, "Filters", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION));
 
-        setSearchLayout(layout, testUI, testResults);
+        setSearchLayout(layout, testUI, results);
     }
 
     private JPanel SearchTestsUI(){
@@ -92,5 +92,9 @@ public class SearchTests extends SearchLayout{
                 "Technician", "Date - Most Recent", "Date - Least Recent"};
 
         return new JComboBox<>(defaultTypes);
+    }
+
+    public JList getSearchTestResults(){
+        return testResults;
     }
 }

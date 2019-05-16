@@ -1,18 +1,18 @@
 import javax.swing.*;
 
 public class FailedTab extends HomeLayout {
-    private JScrollPane failed_list;
+    private JList failedList = new JList();
 
     public FailedTab(){
-        failed_list = createScrollableList("Failed Tests", 700);
+        JScrollPane failed = createScrollableList("Failed Tests", 700, failedList);
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
-        setHomeLayout(layout, failed_list);
+        setHomeLayout(layout, failed);
     }
 
     //has createScrollableList
 
-    public JScrollPane getFailedList(){
-        return failed_list;
+    public JList getFailedList(){
+        return failedList;
     }
 }

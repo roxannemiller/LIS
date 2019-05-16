@@ -26,10 +26,9 @@ abstract class SearchLayout extends TabsBasePanel{
         );
     }
 
-    protected JScrollPane createScrollableList(String title, int height){
-        JList scrollable_list = new JList();
+    protected JScrollPane createScrollableList(String title, int height, JList content){
         JScrollPane pane = new JScrollPane();
-        pane.setViewportView(scrollable_list);
+        pane.setViewportView(content);
         pane.setPreferredSize(new Dimension(1000, height));
         pane.setBorder(BorderFactory.createTitledBorder(null, title, TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION));
 
