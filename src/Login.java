@@ -3,16 +3,18 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import javax.imageio.ImageIO;
+import java.sql.*;
 
 public class Login extends JPanel implements ActionListener {
     private JTextField username;
     private JPasswordField password;
     public JFrame frame;
+    public DBWrapper db_conn;
 
-    public Login(JFrame frame) {
+    public Login(JFrame frame, DBWrapper db_conn) {
         this.frame = frame;
+        this.db_conn = db_conn;
         setLayout(new GridBagLayout());
         JPanel loginPanel = LoginUI();
         add(loginPanel);
@@ -120,22 +122,33 @@ public class Login extends JPanel implements ActionListener {
         return b;
     }
 
-    private static boolean isPasswordCorrect(char[] input) {
-        char[] correctPassword = { 'c', 'a', 'l', 'p', 'o', 'l', 'y' };
+    private ResultSet getUser(String username){
+        String query = "select email, password from users where email = \"" + username + "\";";
+        return db_conn.getDbEntries(query);
+    }
 
-        return (input.length == correctPassword.length && Arrays.equals(input, correctPassword));
+    private boolean userIsValid(ResultSet db_user, String user, String pwd){
+        try{
+            if(db_user.next() && db_user.getString("email").equals(user) && db_user.getString("password").equals(pwd)){
+                return true;
+            }
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return false;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String user = username.getText();
         char[] pwd = password.getPassword();
-        String correctUsername = "msedward";
+        ResultSet user_from_db = getUser(user);
 
-        if(user.equals(correctUsername) && isPasswordCorrect(pwd)) {
+        if(userIsValid(user_from_db, user, new String(pwd))) {
             frame.getContentPane().remove(this);
             frame.setTitle("Overview");
-            JPanel tabs = new MainTabs(frame);
+            JPanel tabs = new MainTabs(frame, db_conn);
             frame.getContentPane().add(tabs);
             frame.pack();
         }
@@ -143,7 +156,6 @@ public class Login extends JPanel implements ActionListener {
             JOptionPane.showMessageDialog(frame, "Incorrect Username/Password Combination.\n"
                     + "                    Please Try Again.");
             password.setText("");
-
         }
     }
 }

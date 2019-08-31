@@ -5,10 +5,12 @@ import java.awt.event.ActionEvent;
 public class Administration extends JPanel {
     private CardLayout layout = new CardLayout();
     private JPanel cardHolder = new JPanel(layout);
+    private DBWrapper db_conn;
 
-    public Administration(){
+    public Administration(DBWrapper db_conn){
+        this.db_conn = db_conn;
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
-        JPanel[] cards = {new Notifications(), new EditUsers(), new Inventory(), new AddEditSampleType(), new AddEditTests()};
+        JPanel[] cards = {new Notifications(), new EditUsers(db_conn), new Inventory(), new AddEditSampleType(), new AddEditTests()};
         String[] cardLabels = {"Notifications", "Manage Users", "Inventory", "Add/Edit Sample Type", "Add/Edit Tests"};
 
         for (int i = 0; i < cards.length; i++) {

@@ -32,7 +32,7 @@ public class ContactLayout extends JPanel{
             buttonPanel.add(b);
         }
 
-        buttonPanel.setBorder(new EmptyBorder(200, 10, 10, 10));
+        buttonPanel.setBorder(new EmptyBorder(170, 10, 10, 10));
         setLayout(new BorderLayout());
         add(buttonPanel, BorderLayout.PAGE_START);
         add(cardHolder, BorderLayout.CENTER);

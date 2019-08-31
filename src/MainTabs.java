@@ -5,9 +5,11 @@ import java.awt.*;
 
 public class MainTabs extends JPanel {
     JFrame frame;
+    DBWrapper db_conn;
 
-    public MainTabs(JFrame frame){
+    public MainTabs(JFrame frame, DBWrapper db_conn){
         this.frame = frame;
+        this.db_conn = db_conn;
         setLayout(new GridLayout());
         setBackground(Color.black);
         add(Tabs());
@@ -24,7 +26,7 @@ public class MainTabs extends JPanel {
 
         t.add("Services", new Services());
 
-        t.add("Administration", new Administration());
+        t.add("Administration", new Administration(db_conn));
 
         ChangeListener changeListener = (ChangeEvent changeEvent)->{
                 JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();

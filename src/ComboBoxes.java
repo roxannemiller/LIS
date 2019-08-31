@@ -1,6 +1,13 @@
 import javax.swing.*;
 
 public class ComboBoxes {
+    public static JComboBox<String> delete_user = new JComboBox<>();
+    public static JComboBox<String> update_privileges = new JComboBox<>();
+
+    public static void initBoxes(DBWrapper db_conn){
+        fillTechnicianBoxes(db_conn);
+    }
+
     public static JComboBox sampleTypeBox(){
         String[] defaultSampleTypes = {"", "Grain", "Tissue", "Pelleted Feed"};
         JComboBox sampleTypeBox = new JComboBox<>(defaultSampleTypes);
@@ -53,6 +60,24 @@ public class ComboBoxes {
         String[] defaultTypes = {"", "Dr. Edwards", "Allison"};
 
         return new JComboBox<>(defaultTypes);
+    }
+
+    private static void fillTechnicianBoxes(DBWrapper db_conn){
+        delete_user.addItem("");
+        update_privileges.addItem("");
+        String query = "select * from users;";
+        db_conn.fillComboBox(delete_user, query, "email");
+        db_conn.fillComboBox(update_privileges, query, "email");
+    }
+
+    public static void removeFromTechnicianBoxes(Object to_remove){
+        delete_user.removeItem(to_remove);
+        update_privileges.removeItem(to_remove);
+    }
+
+    public static void addToTechnicianBoxes(String to_add){
+        delete_user.addItem(to_add);
+        update_privileges.addItem(to_add);
     }
 
     public static JComboBox privilegesBox(){
