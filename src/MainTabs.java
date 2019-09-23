@@ -20,9 +20,9 @@ public class MainTabs extends JPanel {
 
         t.add("Overview", new Overview());
 
-        t.add("Search", new Search());
+        t.add("Search", new Search(db_conn));
 
-        t.add("Samples", new Samples());
+        t.add("Samples", new Samples(db_conn));
 
         t.add("Services", new Services());
 

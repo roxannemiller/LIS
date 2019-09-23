@@ -1,7 +1,8 @@
 -- type of sample (blood, tissue, feed, etc)
 create table sampleTypes(
    id int primary key,
-   type varchar(50)
+   type varchar(50),
+   subtype varchar(50)
 );
 
 -- which room of the lab and where in that room a sample is
@@ -30,8 +31,9 @@ create table speciesNames(
 -- source of a sample (specific animal, plant, etc)
 -- how to differentiate between a permanent vs temporary source?
 create table sources(
-   source_id char(10) primary key,
-   name varchar(50)
+   accession_num char(10) primary key,
+   name varchar(50),
+   active int
    foreign key species int references speciesNames(id),
    foreign key contact int references people(id),
    unique (accession_num)
@@ -39,12 +41,19 @@ create table sources(
 
 -- a sample of some tissue, feed, etc gathered as a unit
 create table samples(
-   accession_num char(10) primary key,
-   foreign key type int references sampleTypes(id),
-   foreign key source int references sources(id),
-   foreign key storage int references storageLocations(id),
-   acquired datetime,
-   quantity int
+   accession_num char(10) primary key, 
+   type int not null,
+   source char(10) not null, 
+   storage int not null, 
+   contact int not null, 
+   foreign key (type) references sampleTypes(id), 
+   foreign key (source) references sources(source_id), 
+   foreign key (storage) references storageLocations(id), 
+   foreign key (contact) references people(id), 
+   description varchar(30), 
+   amount int not null, 
+   units char(5) not null, 
+   acquired datetime not null
 );
 
 -- type of sample (ADF, lignin, etc)

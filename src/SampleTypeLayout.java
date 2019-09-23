@@ -7,20 +7,20 @@ public class SampleTypeLayout extends JPanel{
     private CardLayout layout = new CardLayout();
     private JPanel cardHolder = new JPanel(layout);
 
-    public SampleTypeLayout(){
+    public SampleTypeLayout(DBWrapper db_conn){
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
         String[] cardLabels = {"Edit Existing Sample Type", "Add New Sample Type"};
 
         JButton editType = new JButton(new ButtonAction(cardLabels[0]));
         editType.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.black));
 
-        cardHolder.add(cardLabels[0], new EditSampleType());
+        cardHolder.add(cardLabels[0], new EditSampleType(db_conn));
         buttonPanel.add(editType);
 
         JButton newType = new JButton(new ButtonAction(cardLabels[1]));
         newType.setBorderPainted(false);
 
-        cardHolder.add(cardLabels[1], new NewSampleType());
+        cardHolder.add(cardLabels[1], new NewSampleType(db_conn));
         buttonPanel.add(newType);
 
         JButton[] buttons = {editType, newType};

@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DBWrapper {
@@ -75,11 +76,53 @@ public class DBWrapper {
         ResultSet entries = getDbEntries(query);
         try{
             while(entries.next()){
-                box.addItem(entries.getString(field));
+                if(entries.getString(field) != null){
+                    box.addItem(entries.getString(field));
+                }
             }
         }
         catch(SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public DefaultComboBoxModel getSTypeComboBoxModel(String query){
+        ArrayList<SType> contents = new ArrayList<>();
+        ResultSet entries = getDbEntries(query);
+
+        contents.add(new SType(-1, ""));
+        try{
+            while(entries.next()){
+                int id = entries.getInt("id");
+                String type = entries.getString("subtype");
+                SType t = new SType(id, type);
+                contents.add(t);
+            }
+        }
+        catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return new DefaultComboBoxModel(contents.toArray());
+
+    }
+
+    public DefaultComboBoxModel getComboBoxModel(String query, String field){
+        ArrayList<String> contents = new ArrayList<>();
+        ResultSet entries = getDbEntries(query);
+
+        contents.add("");
+        try{
+            while(entries.next()){
+                if(entries.getString(field) != null){
+                    contents.add(entries.getString(field));
+                }
+            }
+        }
+        catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return new DefaultComboBoxModel(contents.toArray());
     }
 }

@@ -1,11 +1,91 @@
+import sun.misc.JavaxCryptoSealedObjectAccess;
+
 import javax.swing.*;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ComboBoxes {
     public static JComboBox<String> delete_user = new JComboBox<>();
     public static JComboBox<String> update_privileges = new JComboBox<>();
+    public static JComboBox<String> search_c_affil = new JComboBox<>();
+    public static JComboBox<String> search_c_dept = new JComboBox<>();
 
     public static void initBoxes(DBWrapper db_conn){
         fillTechnicianBoxes(db_conn);
+    }
+
+    public static JComboBox getSampleTypeBox(DBWrapper db_conn) {
+        JComboBox box = new JComboBox();
+        box.addPopupMenuListener(new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) {
+                fillSampleTypeBox(db_conn, box);
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent popupMenuEvent) {}
+
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent popupMenuEvent) {}
+        });
+
+        return box;
+    }
+
+    public static JComboBox getContactBox(DBWrapper db_conn){
+        JComboBox box = new JComboBox();
+        box.addPopupMenuListener(new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) {
+                fillContactBox(db_conn, box);
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent popupMenuEvent) {}
+
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent popupMenuEvent) {}
+        });
+
+        return box;
+    }
+
+    public static JComboBox getSampleSourceBox(DBWrapper db_conn) {
+        JComboBox box = new JComboBox();
+        box.addPopupMenuListener(new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) {
+                fillSampleSourceBox(db_conn, box);
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent popupMenuEvent) {}
+
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent popupMenuEvent) {}
+        });
+
+        return box;
+    }
+
+    public static JComboBox getLocationBox(DBWrapper db_conn) {
+        JComboBox box = new JComboBox();
+        box.addPopupMenuListener(new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) {
+                fillLocationBox(db_conn, box);
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent popupMenuEvent) {}
+
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent popupMenuEvent) {}
+        });
+
+        return box;
     }
 
     public static JComboBox sampleTypeBox(){
@@ -78,6 +158,36 @@ public class ComboBoxes {
     public static void addToTechnicianBoxes(String to_add){
         delete_user.addItem(to_add);
         update_privileges.addItem(to_add);
+    }
+
+    public static void fillOrgBox(DBWrapper db_conn, JComboBox box){
+        String query = "select distinct organization from people;";
+        box.setModel(db_conn.getComboBoxModel(query, "organization"));
+    }
+
+    public static void fillDeptBox(DBWrapper db_conn, JComboBox box){
+        String query = "select distinct department from people;";
+        box.setModel(db_conn.getComboBoxModel(query, "department"));
+    }
+
+    private static void fillContactBox(DBWrapper db_conn, JComboBox box){
+        String query = "select name from people";
+        box.setModel(db_conn.getComboBoxModel(query, "name"));
+    }
+
+    private static void fillSampleTypeBox(DBWrapper db_conn, JComboBox box){
+        String query = "select distinct type from sampleTypes";
+        box.setModel(db_conn.getComboBoxModel(query, "type"));
+    }
+
+    private static void fillSampleSourceBox(DBWrapper db_conn, JComboBox box){
+        String query = "select source_id from sources";
+        box.setModel(db_conn.getComboBoxModel(query, "source_id"));
+    }
+
+    private static void fillLocationBox(DBWrapper db_conn, JComboBox box){
+        String query = "select location from storageLocations";
+        box.setModel(db_conn.getComboBoxModel(query, "location"));
     }
 
     public static JComboBox privilegesBox(){

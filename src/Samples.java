@@ -1,14 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.text.ParseException;
 
 public class Samples extends JPanel{
     private CardLayout layout = new CardLayout();
     private JPanel cardHolder = new JPanel(layout);
 
-    public Samples(){
+    public Samples(DBWrapper db_conn) {
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
-        JPanel[] cards = {new NewSample(), new AddEditContact()};
+        JPanel[] cards = {new NewSample(db_conn), new AddEditContact(db_conn)};
         String[] cardLabels = {"New Sample", "Add/Edit Contact"};
 
         for(int i = 0; i < cards.length; i++){

@@ -5,10 +5,12 @@ import java.awt.event.ActionEvent;
 public class Search extends JPanel{
     private CardLayout layout = new CardLayout();
     private JPanel cardHolder = new JPanel(layout);
+    private DBWrapper db_conn;
 
-    public Search(){
+    public Search(DBWrapper db_conn){
+        this.db_conn = db_conn;
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
-        JPanel[] cards = {new SearchSamples(), new SearchTests(), new SearchContacts(), new SearchProjects()};
+        JPanel[] cards = {new SearchSamples(db_conn), new SearchTests(), new SearchContacts(db_conn), new SearchProjects()};
         String[] cardLabels = {"Samples", "Tests", "Contacts", "Projects"};
 
         for(int i = 0; i < cards.length; i++){

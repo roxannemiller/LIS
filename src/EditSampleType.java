@@ -1,15 +1,13 @@
 import javax.swing.*;
 
 public class EditSampleType extends SampleType{
-    private JComboBox sampleBox;
 
-    public EditSampleType() {
-        super();
+    public EditSampleType(DBWrapper db_conn) {
+        super(db_conn, 0);
     }
 
-    protected JComponent getSampleTypeBox(){
-        sampleBox = ComboBoxes.sampleTypeBox();
-        return sampleBox;
+    protected JComponent getSampleTypeBox(DBWrapper db_conn){
+        return ComboBoxes.getSampleTypeBox(db_conn);
     }
 }
 

@@ -34,7 +34,8 @@ public class LIS {
                 "organization varchar(50), " +
                 "department varchar(50), " +
                 "name varchar(50), " +
-                "email varchar(50));";
+                "email varchar(50)," +
+                "unique (name));";
         String spec_nm = "create table if not exists speciesName(" +
                 "id int auto_increment primary key," +
                 "sci_name varchar(100), " +
@@ -47,14 +48,14 @@ public class LIS {
                 "foreign key (species) references speciesName(id), " +
                 "foreign key (contact) references people(id));";
         String samples = "create table if not exists samples(" +
-                "association_num char(10) primary key, " +
+                "accession_num char(10) primary key, " +
                 "type int not null, " +
                 "source char(10) not null, " +
                 "storage int not null, " +
                 "foreign key (type) references sampleTypes(id), " +
                 "foreign key (source) references sources(source_id), " +
                 "foreign key (storage) references storageLocations(id), " +
-                "acquired datetime, " +
+                "collected date, " +
                 "quantity int);";
 
         return Arrays.asList(users, sample_ts, store_locs, people, spec_nm, source, samples);

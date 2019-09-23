@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 public class DeleteUser extends JPanel implements ActionListener {
     private DBWrapper db_conn;
     private JComboBox userBox;
-    ComboBoxes cb = new ComboBoxes();
 
     public DeleteUser(DBWrapper db_conn){
         this.db_conn = db_conn;

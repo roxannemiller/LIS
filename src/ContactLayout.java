@@ -7,20 +7,20 @@ public class ContactLayout extends JPanel{
     private CardLayout layout = new CardLayout();
     private JPanel cardHolder = new JPanel(layout);
 
-    public ContactLayout(){
+    public ContactLayout(DBWrapper db_conn){
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
         String[] cardLabels = {"Add Contact", "Edit Contact"};
 
         JButton addC = new JButton(new ButtonAction(cardLabels[0]));
         addC.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.black));
 
-        cardHolder.add(cardLabels[0], new AddContact());
+        cardHolder.add(cardLabels[0], new AddContact(db_conn, new JComboBox(), new JComboBox()));
         buttonPanel.add(addC);
 
         JButton editC = new JButton(new ButtonAction(cardLabels[1]));
         editC.setBorderPainted(false);
 
-        cardHolder.add(cardLabels[1], new EditContact());
+        cardHolder.add(cardLabels[1], new EditContact(db_conn, new JComboBox(), new JComboBox()));
         buttonPanel.add(editC);
 
         JButton[] buttons = {addC, editC};
