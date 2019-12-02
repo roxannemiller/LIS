@@ -3,8 +3,6 @@ import sun.misc.JavaxCryptoSealedObjectAccess;
 import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class ComboBoxes {
     public static JComboBox<String> delete_user = new JComboBox<>();
@@ -100,20 +98,6 @@ public class ComboBoxes {
         JComboBox source = new JComboBox<>(defaultSourceTypes);
 
         return source;
-    }
-
-    public static JComboBox contactBox(){
-        String[] defaultSourceTypes = {"", "Mark Edwards", "Matt Burd"};
-        JComboBox contact = new JComboBox<>(defaultSourceTypes);
-
-        return contact;
-    }
-
-    public static JComboBox storageLocBox(){
-        String[] defaultSourceTypes = {"", "Cabinet", "Box 5"};
-        JComboBox storageLocation = new JComboBox<>(defaultSourceTypes);
-
-        return storageLocation;
     }
 
     public static JComboBox testTypeBox(){

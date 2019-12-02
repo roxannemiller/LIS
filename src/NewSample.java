@@ -230,7 +230,6 @@ public class NewSample extends TabsBasePanel implements ActionListener {
             }
             else {
                 JOptionPane.showMessageDialog(this, "Sample added");
-
             }
          }
         else {

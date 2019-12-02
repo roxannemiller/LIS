@@ -10,8 +10,9 @@ public class Overview extends JPanel {
     public Overview(){
         //holds the buttons that swap between the cards
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
-        JPanel[] cards = {new ToDoTab(), new InProgressTab(), new CompletedTab(), new FailedTab()};
-        String[] cardLabels = {"To-Do", "In Progress", "Completed", "Failed"};
+        JPanel[] cards = {new InProgressTab(NotificationBoxes.prog_test_notifs),
+                new CompletedTab(NotificationBoxes.complete_test_notifs), new FailedTab(NotificationBoxes.remove_test_notifs)};
+        String[] cardLabels = {"In Progress", "Completed", "Failed"};
 
         for(int i = 0; i < cards.length; i++){
             //adds each card to the cardHolder panel with the associated name

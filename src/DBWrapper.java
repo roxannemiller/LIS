@@ -33,14 +33,9 @@ public class DBWrapper {
         try{
             Statement s = null;
             s = db_conn.createStatement();
-            s.executeUpdate(statements.get(0));
-            s.executeUpdate(statements.get(1));
-            s.executeUpdate(statements.get(2));
-            s.executeUpdate(statements.get(3));
-            s.executeUpdate(statements.get(4));
-            s.executeUpdate(statements.get(5));
-            s.executeUpdate(statements.get(6));
-
+            for (String statement : statements) {
+                s.executeUpdate(statement);
+            }
         }
         catch(SQLException ex){
             ex.printStackTrace();
@@ -72,7 +67,7 @@ public class DBWrapper {
         return result;
     }
 
-    public void fillComboBox(JComboBox<String> box, String query, String field){
+    public void fillComboBox(JComboBox<String> box, String query, String field) {
         ResultSet entries = getDbEntries(query);
         try{
             while(entries.next()){
@@ -86,7 +81,7 @@ public class DBWrapper {
         }
     }
 
-    public DefaultComboBoxModel getSTypeComboBoxModel(String query){
+    public DefaultComboBoxModel getSTypeComboBoxModel(String query) {
         ArrayList<SType> contents = new ArrayList<>();
         ResultSet entries = getDbEntries(query);
 

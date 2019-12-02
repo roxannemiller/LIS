@@ -43,7 +43,6 @@ public class SearchSamples extends SearchLayout implements ActionListener {
         samples = new JTable(t_model);
     }
 
-
     private JPanel SearchSamplesUI(){
         JPanel p = new JPanel();
         p.setPreferredSize(new Dimension(1000, 100));
@@ -247,7 +246,7 @@ public class SearchSamples extends SearchLayout implements ActionListener {
                 contact.next();
                 sample_info[4] = contact.getString("name");
                 storage.next();
-                sample_info[5] = storage.getString("location");
+                sample_info[5] = storage.getString("room") + ", " + storage.getString("location");
                 sample_info[6] = samples.getString("description");
                 sample_info[7] = samples.getFloat("amount") + " " + samples.getString("units");
                 sample_info[8] = samples.getString("collected");

@@ -5,8 +5,8 @@ import java.awt.*;
 abstract class HomeLayout extends TabsBasePanel {
     public JScrollPane notifs;
 
-    public HomeLayout(){
-        notifs = createScrollableList("Notifications", 500, Notifications.getNotifications());
+    public HomeLayout(JTable notifications_table){
+        notifs = createNotifsList("Notifications", 500, notifications_table);
     }
 
     public void setHomeLayout(GroupLayout layout, JScrollPane secondPane){
@@ -37,6 +37,15 @@ abstract class HomeLayout extends TabsBasePanel {
         JScrollPane pane = new JScrollPane();
         pane.setViewportView(content);
         pane.setPreferredSize(new Dimension(width, 600));  //all the lists will be the same height
+        pane.setBorder(BorderFactory.createTitledBorder(null, title, TitledBorder.LEADING, TitledBorder.ABOVE_TOP));
+
+        return pane;
+    }
+
+    private JScrollPane createNotifsList(String title, int width, JTable content){
+        JScrollPane pane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        pane.setViewportView(content);
+        pane.setPreferredSize(new Dimension(width, 600));
         pane.setBorder(BorderFactory.createTitledBorder(null, title, TitledBorder.LEADING, TitledBorder.ABOVE_TOP));
 
         return pane;
