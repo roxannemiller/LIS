@@ -1,5 +1,3 @@
-import sun.misc.JavaxCryptoSealedObjectAccess;
-
 import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
@@ -86,31 +84,58 @@ public class ComboBoxes {
         return box;
     }
 
-    public static JComboBox sampleTypeBox(){
-        String[] defaultSampleTypes = {"", "Grain", "Tissue", "Pelleted Feed"};
-        JComboBox sampleTypeBox = new JComboBox<>(defaultSampleTypes);
+    public static JComboBox getTestTypeBox(DBWrapper db_conn) {
+        JComboBox box = new JComboBox();
+        box.addPopupMenuListener(new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) {
+                fillTestTypeBox(db_conn, box);
+            }
 
-        return sampleTypeBox;
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent popupMenuEvent) {}
+
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent popupMenuEvent) {}
+        });
+
+        return box;
     }
 
-    public static JComboBox sourceBox(){
-        String[] defaultSourceTypes = {"", "Equine", "Tortoise", "009211", "319504"};
-        JComboBox source = new JComboBox<>(defaultSourceTypes);
+    public static JComboBox getTechnicianBox(DBWrapper db_conn) {
+        JComboBox box = new JComboBox();
+        box.addPopupMenuListener(new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) {
+                fillTechnicianBox(db_conn, box);
+            }
 
-        return source;
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent popupMenuEvent) {}
+
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent popupMenuEvent) {}
+        });
+
+        return box;
     }
 
-    public static JComboBox testTypeBox(){
-        String[] defaultSourceTypes = {"", "Partial Drying", "Homogenize", "Pelleting", "Acid Digestion, Microwave", "Ash, Total (organic matter)",
-            "Dry Matter (moisture)", "Particle Size, Macro, Dry", "Particle Size, Dry", "Particle Size, Wet", "Acid Insoluble Ash",
-            "NDF, Amylase, Refluxing", "ADF, Non-Sequential, Refluxing", "ADF, Sequential, Refluxing",
-            "ADL, Sequential, Refluxing", "NDF, Amylase, Filter Bag", "ADF, Non-Sequential, Filter Bag",
-            "ADF, Sequential, Filter Bag", "ADL, Sequential, Filter Bag", "Gross Energy", "Digestibility, In-vitro, 3-stage",
-            "Digestibility, In-vivo", "Digestibility, In-situ", "Density", "pH"};
+    public static JComboBox getProjectBox(DBWrapper db_conn) {
+        JComboBox box = new JComboBox();
+        box.addPopupMenuListener(new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent popupMenuEvent) {
+                fillProjectBox(db_conn, box);
+            }
 
-        JComboBox testType = new JComboBox<>(defaultSourceTypes);
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent popupMenuEvent) {}
 
-        return testType;
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent popupMenuEvent) {}
+        });
+
+        return box;
     }
 
     public static JComboBox projectBox(){
@@ -149,6 +174,11 @@ public class ComboBoxes {
         box.setModel(db_conn.getComboBoxModel(query, "organization"));
     }
 
+    public static void fillTechnicianBox(DBWrapper db_conn, JComboBox box) {
+        String query = "select email from users;";
+        box.setModel(db_conn.getComboBoxModel(query, "email"));
+    }
+
     public static void fillDeptBox(DBWrapper db_conn, JComboBox box){
         String query = "select distinct department from people;";
         box.setModel(db_conn.getComboBoxModel(query, "department"));
@@ -164,6 +194,11 @@ public class ComboBoxes {
         box.setModel(db_conn.getComboBoxModel(query, "type"));
     }
 
+    private static void fillTestTypeBox(DBWrapper db_conn, JComboBox box){
+        String query = "select * from testTypes where active = 1";
+        box.setModel(db_conn.getTTypeComboBoxModel(query));
+    }
+
     private static void fillSampleSourceBox(DBWrapper db_conn, JComboBox box){
         String query = "select source_id from sources";
         box.setModel(db_conn.getComboBoxModel(query, "source_id"));
@@ -172,6 +207,16 @@ public class ComboBoxes {
     private static void fillLocationBox(DBWrapper db_conn, JComboBox box){
         String query = "select location from storageLocations";
         box.setModel(db_conn.getComboBoxModel(query, "location"));
+    }
+
+    public static void fillCategoryBox(DBWrapper db_conn, JComboBox box, String field){
+        String query = "select distinct " + field + " from testTypes;";
+        box.setModel(db_conn.getComboBoxModel(query, field));
+    }
+
+    public static void fillProjectBox(DBWrapper db_conn, JComboBox box) {
+        String query = "select * from projects;";
+        box.setModel(db_conn.getComboBoxModel(query, "name"));
     }
 
     public static JComboBox privilegesBox(){

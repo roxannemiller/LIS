@@ -10,7 +10,7 @@ public class Administration extends JPanel {
     public Administration(DBWrapper db_conn){
         this.db_conn = db_conn;
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
-        JPanel[] cards = {new Notifications(db_conn), new EditUsers(db_conn), new Inventory(db_conn), new AddEditSampleType(db_conn), new AddEditTests()};
+        JPanel[] cards = {new Notifications(db_conn), new EditUsers(db_conn), new Inventory(db_conn), new AddEditSampleType(db_conn), new AddEditTests(db_conn)};
         String[] cardLabels = {"Notifications", "Manage Users", "Inventory", "Add/Edit Sample Type", "Add/Edit Tests"};
 
         for (int i = 0; i < cards.length; i++) {

@@ -123,7 +123,7 @@ public class Login extends JPanel implements ActionListener {
     }
 
     private ResultSet getUser(String username){
-        String query = "select email, password from users where email = \"" + username + "\";";
+        String query = "select email, password, type from users where email = \"" + username + "\";";
         return db_conn.getDbEntries(query);
     }
 
@@ -146,6 +146,13 @@ public class Login extends JPanel implements ActionListener {
         ResultSet user_from_db = getUser(user);
 
         if(userIsValid(user_from_db, user, new String(pwd))) {
+            try {
+                CurrentUser.setUser(user);
+                CurrentUser.setPrivs(user_from_db.getInt("type"));
+            } catch(SQLException ex){
+                ex.printStackTrace();
+            }
+
             frame.getContentPane().remove(this);
             frame.setTitle("Overview");
             JPanel tabs = new MainTabs(frame, db_conn);

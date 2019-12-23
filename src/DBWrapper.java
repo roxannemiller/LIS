@@ -99,7 +99,26 @@ public class DBWrapper {
         }
 
         return new DefaultComboBoxModel(contents.toArray());
+    }
 
+    public DefaultComboBoxModel getTTypeComboBoxModel(String query) {
+        ArrayList<TType> contents = new ArrayList<>();
+        ResultSet entries = getDbEntries(query);
+
+        contents.add(new TType(-1, ""));
+        try{
+            while(entries.next()){
+                int id = entries.getInt("id");
+                String type = entries.getString("service");
+                TType t = new TType(id, type);
+                contents.add(t);
+            }
+        }
+        catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return new DefaultComboBoxModel(contents.toArray());
     }
 
     public DefaultComboBoxModel getComboBoxModel(String query, String field){

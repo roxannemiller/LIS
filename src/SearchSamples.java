@@ -197,7 +197,7 @@ public class SearchSamples extends SearchLayout implements ActionListener {
         String with_source = sourc_present ? "source = \"" + source + "\"" : "";
         String with_date = date_present ? "collected = " + "str_to_date(\"" + date + "\", \"%m/%d/%Y\")" : "";
 
-        String join1 = (st_present && contact_present)? " or " : "";
+        String join1 = (st_present && contact_present) ? " or " : "";
         String join2 = (stor_present && (st_present || contact_present)) ? " or " : "";
         String join3 = (sourc_present && (st_present || contact_present || stor_present)) ? " or " : "";
         String join4 = (date_present && (st_present || contact_present || stor_present || sourc_present)) ? " or " : "";
@@ -210,7 +210,6 @@ public class SearchSamples extends SearchLayout implements ActionListener {
             query += " where (" + with_type + join1 + with_contact + join2 + with_stor + join3 + with_source +
                     join4 + with_date + ")";
             excl_no_inv = !no_inv_okay ? " and amount != 0.0" : "";
-
         }
 
         ResultSet samples = db_conn.getDbEntries(query + excl_no_inv + end);

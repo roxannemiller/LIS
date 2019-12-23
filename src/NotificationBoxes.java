@@ -64,9 +64,12 @@ public class NotificationBoxes {
             e.printStackTrace();
         }
 
-
-
-        return new DefaultTableModel(data_array, column_names);
+        return new DefaultTableModel(data_array, column_names) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };  
     }
 
     public static void removeNotif(DBWrapper db_conn, int index){
@@ -89,7 +92,6 @@ public class NotificationBoxes {
             comp_test_model.removeRow(index);
             remove_test_model.removeRow(index);
             updateTablesOnDelete();
-
         }
     }
 

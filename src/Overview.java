@@ -7,10 +7,10 @@ public class Overview extends JPanel {
     private CardLayout layout = new CardLayout();
     private JPanel cardHolder = new JPanel(layout);
 
-    public Overview(){
+    public Overview(DBWrapper db_conn){
         //holds the buttons that swap between the cards
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
-        JPanel[] cards = {new InProgressTab(NotificationBoxes.prog_test_notifs),
+        JPanel[] cards = {new InProgressTab(NotificationBoxes.prog_test_notifs, db_conn),
                 new CompletedTab(NotificationBoxes.complete_test_notifs), new FailedTab(NotificationBoxes.remove_test_notifs)};
         String[] cardLabels = {"In Progress", "Completed", "Failed"};
 

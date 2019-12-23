@@ -34,7 +34,6 @@ public class NewSample extends TabsBasePanel implements ActionListener {
         JPanel p = new JPanel();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         p.setPreferredSize(new Dimension(1000, screenSize.height));
-        //p.setMaximumSize(new Dimension(1100, screenSize.height));
 
         p.setLayout(new GridBagLayout());
 

@@ -10,8 +10,8 @@ public class Search extends JPanel{
     public Search(DBWrapper db_conn){
         this.db_conn = db_conn;
         JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 1, 0));
-        JPanel[] cards = {new SearchSamples(db_conn), new SearchTests(), new SearchContacts(db_conn), new SearchProjects()};
-        String[] cardLabels = {"Samples", "Tests", "Contacts", "Projects"};
+        JPanel[] cards = {new SearchSamples(db_conn), new SearchTests(db_conn), new SearchContacts(db_conn)};
+        String[] cardLabels = {"Samples", "Tests", "Contacts"};
 
         for(int i = 0; i < cards.length; i++){
             //adds each card to the cardHolder panel with the associated name

@@ -18,13 +18,13 @@ public class MainTabs extends JPanel {
     private JTabbedPane Tabs(){
         JTabbedPane t = new JTabbedPane();
 
-        t.add("Overview", new Overview());
+        t.add("Overview", new Overview(db_conn));
 
         t.add("Search", new Search(db_conn));
 
         t.add("Samples", new Samples(db_conn));
 
-        t.add("Services", new Services());
+        t.add("Services", new Services(db_conn));
 
         t.add("Administration", new Administration(db_conn));
 

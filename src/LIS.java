@@ -11,6 +11,7 @@ public class LIS {
         db_conn.setupDatabase(setup_statements);
         ComboBoxes.initBoxes(db_conn);
         NotificationBoxes.initTables(db_conn);
+        CurrTestBoxes.initTables(db_conn);
         JPanel login = new Login(frame, db_conn);
         frame.setSize(new Dimension(1505, 1142));
         frame.getContentPane().add(login);
@@ -74,13 +75,20 @@ public class LIS {
                 "primary_category char(15), " +
                 "sub_category char(15));";
 
+        String projects = "create table if not exists projects(" +
+                "name varchar(50) primary key, " +
+                "owner varchar(50)," +
+                "foreign key (owner) references users(email));";
+
         String tests = "create table if not exists tests(" +
                 "id int auto_increment primary key, " +
                 "type int not null, " +
                 "num_dup int not null, " +
                 "status int, " +
+                "project varchar(50), " +
                 "owner varchar(50) not null, " +
                 "date_made date not null, " +
+                "foreign key (project) references projects(name), " +
                 "foreign key (owner) references users(email), " +
                 "foreign key (type) references testTypes(id));";
 
@@ -102,7 +110,7 @@ public class LIS {
                 "foreign key (test) references tests(id));";
 
         String actions = "create table if not exists actions(" +
-                "id int auto_increment primary_key, " +
+                "id int auto_increment primary key, " +
                 "name blob not null, " +
                 "length time, " +
                 "start time);";
@@ -151,10 +159,10 @@ public class LIS {
                 "units char(5), " +
                 "num_dup int, " +
                 "foreign key (test_id) references tests(id), " +
-                "foreign key (sample_od) references samples(accession_num));";
+                "foreign key (sample_id) references samples(accession_num));";
 
         return Arrays.asList(users, sample_ts, store_locs, people, spec_nm, source, samples, notifs,
-                measurements, actions, calculations, testTypes, joinTestTypesCalcs, results, tests,
+                measurements, actions, calculations, testTypes, joinTestTypesCalcs, results, projects, tests,
                 joinTestSamples, baseSteps, workflowSteps, joinTestSamples);
     }
 }

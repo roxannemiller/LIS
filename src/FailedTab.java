@@ -5,6 +5,7 @@ public class FailedTab extends HomeLayout {
 
     public FailedTab(JTable notifications_table){
         super(notifications_table);
+
         JScrollPane failed = createScrollableList("Failed Tests", 700, failedList);
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
