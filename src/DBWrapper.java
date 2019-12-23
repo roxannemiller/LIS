@@ -8,8 +8,8 @@ public class DBWrapper {
 
     public DBWrapper(){
         String user = "root";
-        String pwd = "sT4rw#alE";
-        String addr = "jdbc:mysql://localhost:3306/LIS";
+        String pwd = <password>;
+        String addr = <docker container address>;
 
         try{
             this.db_conn = DriverManager.getConnection(addr, user, pwd);
